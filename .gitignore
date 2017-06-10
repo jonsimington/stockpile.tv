@@ -12,6 +12,7 @@
 
 # Ignore SQLite3 files
 *.db
+*.sqlite3
 
 # Ignore coverage files
 .coverage
