@@ -126,7 +126,22 @@ LANGUAGE_CODE = 'en-us'
 USE_I18N = False
 USE_L10N = True
 
-
+##########################################################################
+#
+# Travis Settings
+#
+##########################################################################
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.postgresql_psycopg2',
+            'NAME':     'travisci',
+            'USER':     'postgres',
+            'PASSWORD': '',
+            'HOST':     'localhost',
+            'PORT':     '',
+        }
+    }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

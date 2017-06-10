@@ -1,0 +1,21 @@
+sudo: false
+language: python
+python:
+ - "3.3"
+ - "3.4"
+ - "3.5"
+ - "3.6"
+env:
+  matrix:
+   - DJANGO="Django<1.9"
+   - DJANGO="Django<1.10"
+   - DJANGO="Django<1.11"
+   - DJANGO="Django==1.11b1"
+install:
+ - travis_retry pip install -r requirements.txt
+before_install:
+  - sudo apt-get -qq update
+  - sudo /etc/init.d/postgresql stop
+  - sudo apt-get install -y postgresql-plpython-9.4
+  - sudo /etc/init.d/postgresql start 9.4
+  - psql -c 'create database stockpile_tv;' -U postgres
