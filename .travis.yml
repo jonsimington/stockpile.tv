@@ -9,5 +9,9 @@ env:
     - DJANGO="Django==1.11b1"
 install:
   - travis_retry pip install -r requirements.txt
+before_script:
+  - npm install -g bower
+  - bower install
 script:
+  - python manage.py makemigrations
   - python manage.py migrate
