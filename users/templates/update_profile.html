@@ -1,0 +1,28 @@
+<!--update_profile.html ---
+;;
+;; Filename: update_profile.html
+;; Description:
+;;
+;; Author:
+;; Created: Sat Jun 10 00:42:10 2017 (-0500)-->
+
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Update Profile
+{% endblock %}
+
+{% block page-header %}
+  <div class="page-header">
+    <h1>Update your Profile</h1>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+  {% crispy form %}
+
+{% endblock %}

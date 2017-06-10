@@ -1,0 +1,36 @@
+<!--view_profile.html ---
+;;
+;; Filename: view_profile.html
+;; Description:
+;;
+;; Author:
+;; Created: Sat Jun 10 00:45:02 2017 (-0500)-->
+
+{% extends "base.html" %}
+{% load profile_tags %}
+
+{% block title %}
+  {% if request.user.username == userprofile.user.username %}
+    My Profile
+  {% else %}
+    {{ userprofile.user.username }}'s Profile
+  {% endif %}
+{% endblock %}
+
+{% block main_content %}
+  <div class="row">
+    <div class="col-md-9">
+      <div class="well">
+        <h2>
+          {% filter force_escape %}
+            {% firstof userprofile.user.get_full_name userprofile.user.username %}
+          {% endfilter %}
+        </h2>
+        <h4 class="muted"><i>{{ userprofile.user.username }}</i></h4>
+      </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+  </div>
+
+{% endblock %}
