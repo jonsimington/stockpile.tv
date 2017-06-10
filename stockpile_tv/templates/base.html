@@ -1,0 +1,32 @@
+{% load url from future %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Title -->
+    <title>{% block title %}Stockpile.TV{% endblock %}</title>
+
+    <!-- Include links and metas -->
+    {% include "_head.html" %}
+
+    <!-- Extra meta tags -->
+    {% block meta %}{% endblock %}
+
+    <!-- Extra link tags -->
+    {% block link %}{% endblock %}
+
+    <!-- CSS to be included in-template -->
+    {% block style %}{% endblock %}
+  </head>
+  <body>
+    {% include "_navbar.html" %}
+    {% include "_messages.html" %}
+    {% block content %}{% endblock %}
+
+    {% block modal %}{% endblock %}
+
+    <!-- Extra scripts -->
+    {% block script %}{% endblock %}
+
+  </body>
+</html>

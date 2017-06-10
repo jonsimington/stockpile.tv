@@ -1,0 +1,17 @@
+{% load url from future %}
+
+<li>
+  <a href="{{ user.profile.get_absolute_url }}">
+    <strong>{{ user.username }}</strong>
+  </a>
+</li>
+
+{% if user.is_staff %}
+  <li>
+    <a href="/admin/">Admin</a>
+  </li>
+{% endif %}
+
+<li>
+  <a href="{% url 'account_logout' %}?next={% url 'home' %}"> Logout</a>
+</li>

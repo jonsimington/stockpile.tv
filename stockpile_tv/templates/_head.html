@@ -1,0 +1,21 @@
+<!-- Meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico?v=2" />
+
+<!-- Good ol' whatever this is -->
+<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!-- compressed tags is created by Django Pipeline.  -->
+{% load staticfiles compressed %}
+
+<!-- Include CSS files -->
+{% compressed_css 'libraries' %}
+<!-- ... -->
+
+<!-- Include JavaScript files -->
+{% compressed_js 'libraries' %}

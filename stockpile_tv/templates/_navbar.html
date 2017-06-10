@@ -1,0 +1,26 @@
+<div class="navbar navbar-default">
+  <div class="navbar-header">
+    <a href="/" title="stockpile.tv" class="navbar-brand" rel="home">
+      <img src="{{ STATIC_URL }}img/brand.svg" alt="stockpile.tv" class="img-responsive" />
+    </a>
+    <!-- Helps the navbar collapse when the page shrinks -->
+    <button class="navbar-toggle collapsed">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  <!--mve this /div down with other...maybe-->
+  </div>
+  <!-- Everything you want hidden at 940px or less, place within here -->
+  <div class="navbar-collapse collapse">
+    <ul class="nav pull-left navbar-nav">
+    </ul>
+    <ul class="nav pull-right navbar-nav">
+      {% if user.is_authenticated %}
+        {% include "navbar/_authenticated_users.html" %}
+      {% else %}
+        {% include "navbar/_unauthenticated_users.html" %}
+      {% endif %}
+    </ul>
+  </div>
+</div>
