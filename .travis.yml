@@ -11,7 +11,8 @@ install:
   - travis_retry pip install -r requirements.txt
 before_script:
   - npm install -g bower
-  - bower install
 script:
+  - python manage.py bower install
+  - python manage.py collectstatic
   - python manage.py makemigrations
   - python manage.py migrate
