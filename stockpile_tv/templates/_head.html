@@ -11,11 +11,8 @@
     <![endif]-->
 
 <!-- compressed tags is created by Django Pipeline.  -->
-{% load staticfiles compressed %}
 
-<!-- Include CSS files -->
-{% compressed_css 'libraries' %}
-<!-- ... -->
 
-<!-- Include JavaScript files -->
-{% compressed_js 'libraries' %}
+{% load static %}
+<link rel="stylesheet" href='{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}' />
+<link rel="stylesheet" href='{% static 'bower-components/font-awesome/css/font-awesome.min.css' %}' />

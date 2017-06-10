@@ -2,6 +2,9 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SETTINGS_DIR = os.path.dirname(__file__)
+PROJECT_DIR = os.path.dirname(SETTINGS_DIR)
+APP_DIR = os.path.join(PROJECT_DIR, "stockpile_tv")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '^=xgnpd%4wl+jh(j2+&8ms_eo*1qy7s7y7lib#9)meq)fppf_p'
@@ -48,12 +51,12 @@ INSTALLED_APPS = [
 
     # Test suite
     'django_nose',
+
+    # Staticfile loader
+    'djangobower'
 ]
 
 SITE_ID = 1
-
-SETTINGS_DIR = os.path.dirname(__file__)
-PROJECT_DIR = os.path.dirname(SETTINGS_DIR)
 
 ##########################################################################
 #
@@ -143,6 +146,36 @@ if 'TRAVIS' in os.environ:
         }
     }
 
+
+##########################################################################
+#
+# Bower Settings
+#
+##########################################################################
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'font-awesome',
+    'bootstrap'
+)
+
+BOWER_COMPONENTS_ROOT = PROJECT_DIR
+
+BOWER_PATH = 'bower.cmd'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_DIR, "static"),
+)
+
+STATIC_ROOT = os.path.expanduser("~") + "\static_files"
+STATIC_URL = '/static/'
+ADMIN_MEDIA_PREFIX = '/static/admin/'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -151,6 +184,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
 ]
 
 ROOT_URLCONF = 'stockpile_tv.urls'
@@ -159,7 +193,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(PROJECT_DIR, "templates"),
+            os.path.join(APP_DIR, "templates"),
         ],
         'OPTIONS': {
             'context_processors': [
@@ -167,8 +201,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "django.core.context_processors.media",
-                'django.core.context_processors.i18n',
+                "django.template.context_processors.media",
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.static',
 
             ],
             'loaders': [
