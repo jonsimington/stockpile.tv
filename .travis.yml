@@ -1,5 +1,7 @@
-sudo: true
+sudo: required
 language: python
+services:
+  - docker
 python:
   - "3.6"
 env:
@@ -7,12 +9,5 @@ env:
     - DJANGO="Django<1.10"
     - DJANGO="Django<1.11"
     - DJANGO="Django==1.11b1"
-install:
-  - travis_retry pip install -r requirements.txt
-  - sudo npm config set prefix /etc/npm
-  - sudo npm install bower
 script:
-  - node_modules/bower/bin/bower install
-  - python manage.py collectstatic
-  - python manage.py makemigrations
-  - python manage.py migrate
+  - docker-compose build
