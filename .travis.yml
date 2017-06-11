@@ -12,7 +12,7 @@ install:
   - sudo npm config set prefix /etc/npm
   - sudo npm install bower
 script:
-  - python manage.py bower install
+  - node_modules/bower/bin/bower install
   - python manage.py collectstatic
   - python manage.py makemigrations
   - python manage.py migrate
